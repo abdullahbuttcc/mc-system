@@ -23,7 +23,8 @@ class Database
      * 
      * @var string
      */
-    const DB_NAME = 'mc';
+    //const DB_NAME = 'mc';//live
+    const DB_NAME = 'mc_system';//local
 
     /**
      * Database username

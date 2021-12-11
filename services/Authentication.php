@@ -148,6 +148,7 @@ class Authentication
         if ($userId) {
             $result = $this->checkPassword(Database::DB_TABLES[$userType], Database::DB_ID_FIELDS[$userType], $userId, $password);
             if ($result) {
+                $_SESSION['name'] = ucfirst($result['FirstName']);
                 $_SESSION['loggedIn'] = true;
                 $_SESSION['userID'] = $result[Database::DB_ID_FIELDS[$userType]];
                 $_SESSION['username'] = $result[Database::DB_ID_FIELDS[$userType]];
@@ -174,4 +175,107 @@ class Authentication
         // Return the result of the operation.
         return $response;
     }
+
+        public function insertToCvs($arr,$table_name) {        
+            $response = ["success" => false, "usernameError" => true];
+            $cols=implode(",",array_keys($arr));
+            $query_text="";
+            $data=array();
+            foreach ($arr as $key=>$values) {
+                if ($query_text=="") {
+                    $query_text="?";
+                    $data[]=$values;
+                } else {
+                    $query_text.=",?";
+                    $data[]=$values;
+                }
+            }
+            $query="insert into {$table_name} ($cols) values ($query_text)";
+            try {
+                // Prepare statement
+                $stmt = Authentication::$db->prepare($query);
+                $result = $stmt->execute($data);
+                if ($result > 0) {
+                   $response = ["success" => true, "usernameError" => false];
+                }else{
+                    $response = ["success" => false, "usernameError" => true];
+                }
+            }
+            //catch exception
+            catch (\Exception $e) {
+                echo 'Message: ' . $e->getMessage();
+            }
+
+
+            // Return the result of the operation.
+            return $response;
+        }
+
+        public function getRow($query){
+            $response = ["success" => false, "usernameError" => true];
+            try {
+                // Prepare statement
+                $stmt = Authentication::$db->prepare($query);
+                $stmt->execute();
+                return $stmt->fetch();  
+            }
+            //catch exception
+            catch (\Exception $e) {
+                echo 'Message: ' . $e->getMessage();
+            }
+        }
+
+        public function fetch_all($query)
+        {
+            $stmt = Authentication::$db->prepare($query);
+            $stmt->execute();
+            $stmt->setFetchMode(PDO::FETCH_ASSOC);
+            return $stmt->fetchAll();
+        }
+
+        public function query($query){
+            try {
+                $stmt=Authentication::$db->prepare($query);
+                $result=$stmt->execute();
+                return $result;
+            } catch (PDOException $e) {
+                print $e->getMessage();
+                die();
+            }
+        }
+
+        public function update($id,$arr,$table_name,$wherecol){
+            $response = ["success" => false, "usernameError" => true];
+            $q='';
+            $data=array();
+            foreach($arr as $key=>$value){
+                if($q=='') {
+                    $q.="$key=?";
+                    $data[]=$value;
+                } else {
+                    $q.=",$key=?";
+                    $data[]=$value;
+                }
+            }
+            $query="update {$table_name} set $q where ".$wherecol." = ".intval($id);
+            try {
+                // Prepare statement
+                $stmt = Authentication::$db->prepare($query);
+                $result = $stmt->execute($data);
+                if ($result > 0) {
+                   $response = ["success" => true, "usernameError" => false];
+                }else{
+                    $response = ["success" => false, "usernameError" => true];
+                }
+            }
+            //catch exception
+            catch (\Exception $e) {
+                echo 'Message: ' . $e->getMessage();
+            }
+
+
+            // Return the result of the operation.
+            return $response;
+        }
+
 }
