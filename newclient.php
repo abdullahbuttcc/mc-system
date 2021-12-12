@@ -1,22 +1,6 @@
 <?php
-
 require_once __DIR__ . '/controllers/loginCheckController.php';
-
-if ($_SESSION['userType'] === 0) {
-    redirect(base_url() . 'client.php');
-}
-if ($_SESSION['userType'] === 1) {
-    redirect(base_url() . 'provider.php');
-}
-if ($_SESSION['userType'] === 0) {
-    $nav = file_get_contents(__DIR__ . "/include/templates/navbar-loggedin-client.php");
-}
-if ($_SESSION['userType'] === 1) {
-    $nav = file_get_contents(__DIR__ . "/include/templates/navbar-loggedin-provider.php");
-}
-if ($_SESSION['userType'] === 2) {
-    $nav = file_get_contents(__DIR__ . "/include/templates/navbar-loggedin-agency.php");
-}
+require_once __DIR__ . '/controllers/ClientController.php';
 
 ?>
 <!doctype html>
@@ -26,26 +10,35 @@ if ($_SESSION['userType'] === 2) {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>New Client</title>
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <!-- CUSTOM CSS -->
-    <link href="assets/css/services.css" rel="stylesheet">
+    <?php
+        require_once __DIR__ . "/include/templates/site-header.php";
+    ?>
 </head>
 
-<body class="text-center">
-    <?php echo $nav ?>
-
+<body>
+    <?php 
+        if ($_SESSION['userType'] === 0) {
+            include(__DIR__ . "/include/templates/navbar-loggedin-client.php");
+        }
+        if ($_SESSION['userType'] === 1) {
+            include(__DIR__ . "/include/templates/navbar-loggedin-provider.php");
+        }
+        if ($_SESSION['userType'] === 2) {
+            include(__DIR__ . "/include/templates/navbar-loggedin-agency.php");
+        }
+    ?>
 
     <!-- SIGN IN FORM -->
-    <div class="container">
-
-        <main class="form-signin flex">
-            <h1>New Client</h1>
-        </main>
+    <div class="col-9">
+        <div class="container pt-4">
+            <?php if(isset($error)){echo $error;}; ?>
+            <main class="form-signin flex">
+                <h1>New Client</h1>
+            </main>
+        </div>
     </div>
-
-
-
 </body>
-
+<?php
+require_once __DIR__ . "/include/templates/sit-js.php";
+?>
 </html>

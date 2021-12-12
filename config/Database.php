@@ -100,6 +100,37 @@ class Database
      * 
      * @var string
      */
+
+    const DB_TABLE_NDISPLANTABLE = 'ndisplantable';
+    /**
+     * Agency Officer ID Field Name
+     * 
+     * @var string
+     */
+    const DB_TABLE_BOOKINGTABLE = 'bookingtable';
+    /**
+     * Agency Officer ID Field Name
+     * 
+     * @var string
+     */
+    const DB_TABLE_PROVIDER_ORGANISATION_TABLE = 'providerorganisationtable';
+    /**
+     * Agency Officer ID Field Name
+     * 
+     * @var string
+     */
+    const DB_TABLE_SERVICES_PROVIDED_TABLE = 'servicesprovidedtable';
+    /**
+     * Agency Officer ID Field Name
+     * 
+     * @var string
+     */
+    const DB_TABLE_DISCUSSION_TABLE = 'discussiontable';
+    /**
+     * Agency Officer ID Field Name
+     * 
+     * @var string
+     */
     const DB_TABLE_AGENCY_ID_FIELD = 'AgencyOfficerID';
     /**
      * Client history Table Name

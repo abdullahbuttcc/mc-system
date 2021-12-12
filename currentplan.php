@@ -1,6 +1,6 @@
-
 <?php
 require_once __DIR__ . '/controllers/loginCheckController.php';
+require_once __DIR__ . '/controllers/CurrentPlanController.php';
 
 ?>
 <!doctype html>
@@ -9,13 +9,13 @@ require_once __DIR__ . '/controllers/loginCheckController.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Current Plan</title>
+    <title>Current Plane</title>
     <?php
         require_once __DIR__ . "/include/templates/site-header.php";
     ?>
 </head>
 
-<body class="text-center">
+<body>
     <?php 
         if ($_SESSION['userType'] === 0) {
             include(__DIR__ . "/include/templates/navbar-loggedin-client.php");
@@ -27,12 +27,34 @@ require_once __DIR__ . '/controllers/loginCheckController.php';
             include(__DIR__ . "/include/templates/navbar-loggedin-agency.php");
         }
     ?>
-        <div class="col-9">
-            <div class="container">
-                <main class="form-signin flex">
-                    <h1>Current Plan</h1>
-                </main>
-            </div>
+
+    <!-- SIGN IN FORM -->
+    <div class="col-9">
+        <div class="container pt-4">
+            <?php if(isset($error)){echo $error;}; ?>
+            <main class="form-signin flex">
+                <h1 class="text-center pb-4">Current Plane</h1>
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Approved</th>
+                            <th scope="col">Available</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($getdat as $value) { ?>
+                        <tr>
+                            <td><?php echo date('d-m-Y',strtotime($value['PlanStartDate']));?></td>
+                            <td><?php echo $value['Service'];?></td>
+                            <td><?php echo $value['AmountApproved'];?></td>
+                            <td><?php echo $value['AmountAvailable'];?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </main>
         </div>
     </div>
 </body>

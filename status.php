@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/controllers/loginCheckController.php';
+require_once __DIR__ . '/controllers/ClientController.php';
 
 ?>
 <!doctype html>
@@ -14,7 +15,7 @@ require_once __DIR__ . '/controllers/loginCheckController.php';
     ?>
 </head>
 
-<body class="text-center">
+<body>
     <?php 
         if ($_SESSION['userType'] === 0) {
             include(__DIR__ . "/include/templates/navbar-loggedin-client.php");
@@ -26,12 +27,14 @@ require_once __DIR__ . '/controllers/loginCheckController.php';
             include(__DIR__ . "/include/templates/navbar-loggedin-agency.php");
         }
     ?>
-        <div class="col-9">
-            <div class="container">
-                <main class="form-signin flex">
-                    <h1>Status</h1>
-                </main>
-            </div>
+
+    <!-- SIGN IN FORM -->
+    <div class="col-9">
+        <div class="container pt-4">
+            <?php if(isset($error)){echo $error;}; ?>
+            <main class="form-signin flex">
+                <h1>Status</h1>
+            </main>
         </div>
     </div>
 </body>

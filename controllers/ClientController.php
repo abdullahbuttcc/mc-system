@@ -1,8 +1,9 @@
 <?php
 require_once __DIR__ . '/../include/functions.php';
-require_once __DIR__ . '/../config/Environment.php';
 require_once __DIR__ . '/../services/Authentication.php';
+require_once __DIR__ . '/../config/Database.php';
 use Core\Authentication;
+use Config\Database;
 
 if (!isset($_SESSION['userID'])) {
     redirect(base_url() . '../index.php');
@@ -11,7 +12,7 @@ $error = "";
 
 $auth = new Authentication;
 
-$getdat = $auth->getRow("select * from ClientContactTable");
+$getdat = $auth->getRow("select * from ".Database::DB_TABLES[$_SESSION['userType']]." where ".Database::DB_ID_FIELDS[$_SESSION['userType']]." = ".$_SESSION['userID']);
 if (isset($_POST['UpdateDetailsButton']) && $_POST['UpdateDetailsButton']=='update'){
     $error = '';
     $birthDate = $_POST['BirthYear'] . "-" . date_parse($_POST['BirthMonth'])['month'] . "-" . $_POST['BirthDay'];
@@ -46,8 +47,8 @@ if (isset($_POST['UpdateDetailsButton']) && $_POST['UpdateDetailsButton']=='upda
         'DepartureReason' => $getdat['DepartureReason'],
         'LastUpdated' => date('Y-m-d h:i:s'),
     );
-    $response = $auth->update($_POST['id_c'],$arr,'ClientContactTable','ClientContactID');
-    $getdat = $auth->getRow("select * from ClientContactTable");
+    $response = $auth->update($_POST['id_c'], $arr , Database::DB_TABLES[$_SESSION['userType']],Database::DB_ID_FIELDS[$_SESSION['userType']]);
+    $getdat = $auth->getRow("select * from ".Database::DB_TABLES[$_SESSION['userType']]." where ".Database::DB_ID_FIELDS[$_SESSION['userType']]." = ".$_SESSION['userID']);
     if ($response['usernameError']) {
         $error = "<div class='alert alert-danger' role='alert'>
                 You have entered a duplicate username

@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/controllers/loginCheckController.php';
+require_once __DIR__ . '/controllers/CurrentBookingController.php';
 
 ?>
 <!doctype html>
@@ -8,13 +9,13 @@ require_once __DIR__ . '/controllers/loginCheckController.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Current Booking</title>
+    <title>Current Plane</title>
     <?php
         require_once __DIR__ . "/include/templates/site-header.php";
     ?>
 </head>
 
-<body class="text-center">
+<body>
     <?php 
         if ($_SESSION['userType'] === 0) {
             include(__DIR__ . "/include/templates/navbar-loggedin-client.php");
@@ -26,12 +27,38 @@ require_once __DIR__ . '/controllers/loginCheckController.php';
             include(__DIR__ . "/include/templates/navbar-loggedin-agency.php");
         }
     ?>
-        <div class="col-9">
-            <div class="container">
-                <main class="form-signin flex">
-                    <h1>Current Booking</h1>
-                </main>
-            </div>
+
+    <!-- SIGN IN FORM -->
+    <div class="col-9">
+        <div class="container pt-4">
+            <?php if(isset($error)){echo $error;}; ?>
+            <main class="form-signin flex">
+                <h1 class="text-center pb-4">Current Plane</h1>
+                <table class="table table-bordered ">
+                    <thead>
+                        <tr>
+                            <th scope="col">Provider</th>
+                            <th scope="col">Service</th>
+                            <th scope="col">Last Update</th>
+                            <th scope="col">Start Date</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Frequency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <?php foreach ($getdat as $value) { ?>
+                        <tr>
+                            <td><?php echo $value['TradingName'];?></td>
+                            <td><?php echo $value['Service'];?></td>
+                            <td><?php echo date('d-m-Y',strtotime($value['LastUpdated']));?></td>
+                            <td><?php echo date('d-m-Y',strtotime($value['DateStart']));?></td>
+                            <td><?php echo $value['TransactionPrice'];?></td>
+                            <td><?php if($value['Recurring']!=''){echo $value['Frequency'];}else{ echo $value['Recurring'];}?></td>
+                        </tr>
+                    <?php } ?>
+                    </tbody>
+                </table>
+            </main>
         </div>
     </div>
 </body>
