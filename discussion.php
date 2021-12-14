@@ -15,7 +15,7 @@ require_once __DIR__ . '/controllers/DiscussionController.php';
     ?>
     <style type="text/css">
         .dataTables_filter {
-           width: 50%;
+           width:auto;
            float: right;
            text-align: right;
         }
@@ -23,7 +23,7 @@ require_once __DIR__ . '/controllers/DiscussionController.php';
            text-align: left;
         }
         .dataTables_paginate {
-            width: 33%;
+            width: auto;
            float: right;
            text-align: right;
         }

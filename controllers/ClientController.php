@@ -15,7 +15,8 @@ $auth = new Authentication;
 $getdat = $auth->getRow("select * from ".Database::DB_TABLES[$_SESSION['userType']]." where ".Database::DB_ID_FIELDS[$_SESSION['userType']]." = ".$_SESSION['userID']);
 if (isset($_POST['UpdateDetailsButton']) && $_POST['UpdateDetailsButton']=='update'){
     $error = '';
-    $birthDate = $_POST['BirthYear'] . "-" . date_parse($_POST['BirthMonth'])['month'] . "-" . $_POST['BirthDay'];
+    $birthDate = $_POST['BirthYear']."-".$_POST['BirthMonth']."-". $_POST['BirthDay'];
+    //die($birthDate);
     $arr  = array(
         'EntryDate' => $getdat['EntryDate'],
         'ClientNDISNumber' => $_POST['NDISNumberValue'], 
@@ -50,12 +51,12 @@ if (isset($_POST['UpdateDetailsButton']) && $_POST['UpdateDetailsButton']=='upda
     $response = $auth->update($_POST['id_c'], $arr , Database::DB_TABLES[$_SESSION['userType']],Database::DB_ID_FIELDS[$_SESSION['userType']]);
     $getdat = $auth->getRow("select * from ".Database::DB_TABLES[$_SESSION['userType']]." where ".Database::DB_ID_FIELDS[$_SESSION['userType']]." = ".$_SESSION['userID']);
     if ($response['usernameError']) {
-        $error = "<div class='alert alert-danger' role='alert'>
-                You have entered a duplicate username
+        $error = "<div class='alert alert-danger text-center' role='alert'>
+                Please fill all inputs
                 </div>";
     }else {
-        $error = "<div class='alert alert-success' role='alert'>
-                New user created successfully
+        $error = "<div class='alert alert-success text-center' role='alert'>
+                Data update successfully
                 </div>";
     }
 }
