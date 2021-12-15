@@ -15,15 +15,15 @@ $auth = new Authentication;
 $getdat = $auth->getRow("select * from ".Database::DB_TABLES[$_SESSION['userType']]." where ".Database::DB_ID_FIELDS[$_SESSION['userType']]." = ".$_SESSION['userID']);
 if (isset($_POST['UpdateDetailsButton']) && $_POST['UpdateDetailsButton']=='update'){
     $error = '';
-    $birthDate = $_POST['BirthYear']."-".$_POST['BirthMonth']."-". $_POST['BirthDay'];
+    if (isset($_POST['BirthYear']) && isset($_POST['BirthMonth']) && isset($_POST['BirthDay'])) {
+        $birthDate = $_POST['BirthYear']."-".$_POST['BirthMonth']."-". $_POST['BirthDay'];
+    }
     //die($birthDate);
     $arr  = array(
         'EntryDate' => $getdat['EntryDate'],
-        'ClientNDISNumber' => $_POST['NDISNumberValue'], 
         'FirstName' => $_POST['FirstNameTextbox'],
         'MiddleName' => $_POST['MiddleNameTextbox'],
-        'LastName' => $_POST['LastNameTextbox'],
-        'BirthDate' => $birthDate,
+        'LastName' => $_POST['LastNameTextbox'],        
         'UnitNumber' => $_POST['UnitNumberTextBox'],
         'StreetNumber' => $_POST['StreetNumberTextBox'],
         'StreetName' => $_POST['StreetNameTextbox'],
@@ -39,15 +39,28 @@ if (isset($_POST['UpdateDetailsButton']) && $_POST['UpdateDetailsButton']=='upda
         'Password' => $getdat['Password'],
         'SecurityAnswer' => $getdat['SecurityAnswer'],
         'CommencementDate' => $_POST['CommencementDateValue'],
-        'EmergencyContact' => $getdat['EmergencyContact'],
         'AggregateRating' => $_POST['AggregateRatingLabelValue'],
         'NumberOfRatings' => $_POST['NumberOfRatingsLabelValue'],
-        'HomePhone' => $_POST['HomePhoneTextBox'],
-        'Living' => $getdat['Living'],
         'DepartureDate' => $getdat['DepartureDate'],
         'DepartureReason' => $getdat['DepartureReason'],
         'LastUpdated' => date('Y-m-d h:i:s'),
     );
+    if ($_SESSION['userType'] === 0) {
+        $arr['ClientNDISNumber'] = $_POST['NDISNumberValue'];
+        $arr['BirthDate'] = $birthDate;
+        $arr['HomePhone'] = $_POST['HomePhoneTextBox'];
+        $arr['Living'] = $getdat['Living'];
+        $arr['EmergencyContact'] = $getdat['EmergencyContact'];
+    }
+    if ($_SESSION['userType'] === 1) {
+        $arr['ProviderNDISNumber'] = $_POST['NDISNumberValue'];
+        $arr['WorkPhone'] = $_POST['HomePhoneTextBox'];
+        $arr['ProviderOrganisation'] = $getdat['ProviderOrganisation'];
+        $arr['Active'] = $getdat['Active'];
+    }
+    // echo Database::DB_TABLES[$_SESSION['userType']];
+    // echo Database::DB_ID_FIELDS[$_SESSION['userType']];
+    // print_r($arr);die();
     $response = $auth->update($_POST['id_c'], $arr , Database::DB_TABLES[$_SESSION['userType']],Database::DB_ID_FIELDS[$_SESSION['userType']]);
     $getdat = $auth->getRow("select * from ".Database::DB_TABLES[$_SESSION['userType']]." where ".Database::DB_ID_FIELDS[$_SESSION['userType']]." = ".$_SESSION['userID']);
     if ($response['usernameError']) {

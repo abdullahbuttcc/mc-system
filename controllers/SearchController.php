@@ -13,4 +13,3 @@ $auth = new Authentication;
 if (isset($_REQUEST['SearchButton']) && $_REQUEST['SearchButton'] == 'search') {
     $getdat = $auth->fetch_all("select s.*,p.* from ".Database::DB_TABLE_SERVICES_PROVIDED_TABLE." as s inner join ".Database::DB_TABLE_PROVIDER_ORGANISATION_TABLE." as p on p.ProviderOrganisationID=s.ProviderID  where s.Active ='".$_REQUEST['ServiceDropBox']."' and s.Suburb ='".$_REQUEST['SuburbTextbox']."' group by s.Service");
 }
-

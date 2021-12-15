@@ -62,6 +62,7 @@ require_once __DIR__ . '/controllers/SearchController.php';
                     </form>
                 </div>
                 <div>
+                    <?php if(!empty($getdat)){?>
                     <table class="table table-bordered ">
                         <thead>
                             <tr>
@@ -85,11 +86,12 @@ require_once __DIR__ . '/controllers/SearchController.php';
                             </tr>
                             <?php } }else{ ?>
                             <tr>
-                                <td colspan="6" class="text-center">Noting that the search criteria</td>
+                                <td colspan="6" class="text-center">Nothing matches your search criteria.</td>
                             </tr>
                             <?php } ?>
                         </tbody>
                     </table>
+                    <?php } ?>
                 </div>
                     
             </main>

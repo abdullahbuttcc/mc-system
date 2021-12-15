@@ -9,7 +9,7 @@ require_once __DIR__ . '/controllers/CurrentPlanController.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Current Plane</title>
+    <title>Current Plan</title>
     <?php
         require_once __DIR__ . "/include/templates/site-header.php";
     ?>
@@ -33,7 +33,7 @@ require_once __DIR__ . '/controllers/CurrentPlanController.php';
         <div class="container pt-4">
             <?php if(isset($error)){echo $error;}; ?>
             <main class="form-signin flex">
-                <h1 class="text-center pb-4">Current Plane</h1>
+                <h1 class="text-center pb-4">Current Plan</h1>
                 <table class="table table-bordered ">
                     <thead>
                         <tr>

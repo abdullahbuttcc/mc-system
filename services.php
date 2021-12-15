@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/controllers/loginCheckController.php';
-require_once __DIR__ . '/controllers/ClientController.php';
+require_once __DIR__ . '/controllers/ServiceController.php';
 
 ?>
 <!doctype html>
@@ -34,6 +34,24 @@ require_once __DIR__ . '/controllers/ClientController.php';
             <?php if(isset($error)){echo $error;}; ?>
             <main class="form-signin flex">
                 <h1>Services</h1>
+                <div class="pb-4 row">
+                    <table class="table">
+                        <thead>
+                            <tr class="text-center">
+                                <th scope="col">Sr#</th>
+                                <th scope="col"> Services </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        <?php if(!empty($getdat)){$i=0;foreach ($getdat as $value) { ?>
+                            <tr class="text-center">
+                                <td><?php echo $i=$i+1;?></td>
+                                <td><?php echo $value['Service'];?></td>
+                            </tr>
+                        <?php } }?>
+                        </tbody>
+                    </table>
+                </div>
             </main>
         </div>
     </div>

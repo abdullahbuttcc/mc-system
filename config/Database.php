@@ -70,7 +70,7 @@ class Database
      * 
      * @var string
      */
-    const DB_TABLE_CLIENT = 'ClientContactTable';
+    const DB_TABLE_CLIENT = 'clientcontacttable';
     /**
      * Client Contact ID Field Name
      * 
@@ -82,7 +82,7 @@ class Database
      * 
      * @var string
      */
-    const DB_TABLE_PROVIDER = 'ProviderContactTable';
+    const DB_TABLE_PROVIDER = 'providercontacttable';
     /**
      * Provider Contact ID Field Name
      * 

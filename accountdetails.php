@@ -33,13 +33,28 @@ require_once __DIR__ . '/controllers/ClientController.php';
                     <?php if(isset($error)){echo $error;}; ?>
                     <h1 class="pb-4 text-center">Account Details</h1>
                     <form method="POST">
+                        <?php if ($_SESSION['userType'] === 0) {?>
                         <input type="hidden" name="id_c" value="<?php echo $getdat['ClientContactID'];?>">
+                        <?php  } ?>
+                        <?php if ($_SESSION['userType'] === 1) {?>
+                        <input type="hidden" name="id_c" value="<?php echo $getdat['ProviderContactID'];?>">
+                        <?php  } ?>
+                        <?php if ($_SESSION['userType'] === 0) {?>
                         <div class="row mb-3">
                             <label name="NDISNumberLabel" for="Username" class="col-sm-2 col-form-label">NDIS Number</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="NDISNumberValue" name="NDISNumberValue" placeholder="NDIS Number" value="<?php echo $getdat['ClientNDISNumber'];?>">
                             </div>
                         </div>
+                        <?php  } ?>
+                        <?php if ($_SESSION['userType'] === 1) {?>
+                        <div class="row mb-3">
+                            <label name="NDISNumberLabel" for="Username" class="col-sm-2 col-form-label">Provider NDIS Number</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="NDISNumberValue" name="NDISNumberValue" placeholder="NDIS Number" value="<?php echo $getdat['ProviderNDISNumber'];?>">
+                            </div>
+                        </div>
+                        <?php  } ?>
                         <div class="row mb-3">
                             <label name="NameLabel" for="Name" class="col-2 col-form-label">Name</label>
                             <div class="col-sm-3">
@@ -52,6 +67,7 @@ require_once __DIR__ . '/controllers/ClientController.php';
                                 <input type="text" class="form-control" id="LastNameTextbox" name="LastNameTextbox" placeholder="Last Name" value="<?php echo $getdat['LastName'];?>">
                             </div>
                         </div>
+                        <?php if ($_SESSION['userType'] === 0) {?>
                         <div class="row mb-3">
                             <?php
                                 $dateofbirth = explode('-',$getdat['BirthDate']);
@@ -67,6 +83,7 @@ require_once __DIR__ . '/controllers/ClientController.php';
                                 <input type="text" class="form-control" id="BirthYear" name="BirthYear" placeholder="Birth Year" value="<?php echo $dateofbirth[0];?>">
                             </div>
                         </div>
+                        <?php  } ?>
                         <div class="row mb-3">
                             <label name="AddressLabel" class="col-2 form-label">Address</label>
                             <div class="col-3">
@@ -121,12 +138,22 @@ require_once __DIR__ . '/controllers/ClientController.php';
                                 <input type="text" class="form-control" id="MobilePhoneTextbox" name="MobilePhoneTextbox" value="<?php echo $getdat['MobilePhone'];?>">
                             </div>
                         </div>
+                        <?php if ($_SESSION['userType'] === 0) {?>
                         <div class="row mb-3">
                             <label name="HomePhoneLabel" for="HomePhone" class="col-sm-2 col-form-label">Home Phone</label>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control" id="HomePhoneTextBox" name="HomePhoneTextBox" placeholder="Home Phone" value="<?php echo $getdat['HomePhone'];?>">
                             </div>
                         </div>
+                        <?php  } ?>
+                        <?php if ($_SESSION['userType'] === 1) {?>
+                        <div class="row mb-3">
+                            <label name="HomePhoneLabel" for="HomePhone" class="col-sm-2 col-form-label">Work Phone</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="HomePhoneTextBox" name="HomePhoneTextBox" placeholder="Home Phone" value="<?php echo $getdat['WorkPhone'];?>">
+                            </div>
+                        </div>
+                        <?php  } ?>
                         <div class="row mb-3">
                             <label name="PreferredContactLabel" for="PreferredContactLabel" class="col-sm-2 col-form-label">Preferred Contact</label>
                             <div class="col-sm-10">
