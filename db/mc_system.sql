@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 14, 2021 at 08:31 AM
+-- Generation Time: Dec 17, 2021 at 01:43 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.4.24
 
@@ -177,7 +177,7 @@ CREATE TABLE `clientcontacttable` (
 --
 
 INSERT INTO `clientcontacttable` (`ClientContactID`, `EntryDate`, `ClientNDISNumber`, `FirstName`, `MiddleName`, `LastName`, `BirthDate`, `UnitNumber`, `StreetNumber`, `StreetName`, `StreetType`, `Suburb`, `State`, `Postcode`, `Email1`, `Email2`, `MobilePhone`, `HomePhone`, `PreferredContact`, `Password`, `SecurityQuestion`, `SecurityAnswer`, `EmergencyContact`, `CommencementDate`, `AggregateRating`, `NumberOfRatings`, `Living`, `DepartureDate`, `DepartureReason`, `LastUpdated`) VALUES
-(1, '2021-09-18 15:56:16', '21312', 'johnny', 'm', 'doe', '2020-04-02', '1', '1', '1', '1', '1', 'ACT', '1', 'john2@john2.com', 'abd@dsf.com', '034234', '324234', '34242', 'password', 'masfsa', 'mdfsf', '235235', '2021-09-18 00:00:00', 342, 0, 4, '2021-09-18 15:56:16', '324', '2021-12-13 10:23:36');
+(1, '2021-09-18 15:56:16', '21312', 'johnny', 'm', 'doe', '2020-04-02', '1', '1', '1', '1', '1', 'ACT', '1', 'john2@john2.com', 'abd@dsf.com', '034234', '324234', '34242', 'password', 'masfsa', 'mdfsf', '235235', '2021-09-18 00:00:00', 342, 0, 4, '2021-09-18 15:56:16', '324', '2021-12-15 10:07:12');
 
 -- --------------------------------------------------------
 
@@ -211,7 +211,14 @@ INSERT INTO `clienthistorytable` (`ClientHistoryID`, `EntryDate`, `ClientContact
 (10, '2021-12-11 19:17:28', '2', 2147483647, 'User logged in', '0000-00-00 00:00:00'),
 (11, '2021-12-11 19:18:37', '2', 2147483647, 'User logged out', '0000-00-00 00:00:00'),
 (12, '2021-12-11 19:18:40', '1', 2147483647, 'User logged in', '0000-00-00 00:00:00'),
-(13, '2021-12-11 20:42:32', '1', 2147483647, 'User logged in', '0000-00-00 00:00:00');
+(13, '2021-12-11 20:42:32', '1', 2147483647, 'User logged in', '0000-00-00 00:00:00'),
+(14, '2021-12-14 18:45:50', '1', 2147483647, 'User logged out', '0000-00-00 00:00:00'),
+(15, '2021-12-14 18:52:03', '1', 2147483647, 'User logged in', '0000-00-00 00:00:00'),
+(16, '2021-12-15 12:58:53', '1', 2147483647, 'User logged out', '0000-00-00 00:00:00'),
+(17, '2021-12-15 14:06:42', '1', 2147483647, 'User logged in', '0000-00-00 00:00:00'),
+(18, '2021-12-15 14:07:43', '1', 2147483647, 'User logged out', '0000-00-00 00:00:00'),
+(19, '2021-12-15 14:38:18', '1', 2147483647, 'User logged in', '0000-00-00 00:00:00'),
+(20, '2021-12-15 14:38:23', '1', 2147483647, 'User logged out', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -224,34 +231,62 @@ CREATE TABLE `discussiontable` (
   `EntryDate` datetime NOT NULL,
   `SenderID` varchar(255) NOT NULL,
   `RecipientID` varchar(255) NOT NULL,
-  `Message` text NOT NULL
+  `Message` text NOT NULL,
+  `type` enum('client','provider') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `discussiontable`
 --
 
-INSERT INTO `discussiontable` (`DiscussionID`, `EntryDate`, `SenderID`, `RecipientID`, `Message`) VALUES
-(1, '2021-12-12 02:59:42', '1', '1', '1'),
-(2, '2021-12-12 03:00:07', '1', '1', '1'),
-(3, '2021-12-12 03:04:20', '1', '1', 'fdsfd'),
-(4, '2021-12-12 03:04:28', '1', '1', 'sdfsdfsd'),
-(5, '2021-12-12 03:04:38', '1', '1', '32432'),
-(6, '2021-12-12 03:05:26', '1', '1', '32432'),
-(7, '2021-12-12 03:06:38', '1', '1', 'hkj'),
-(8, '2021-12-12 03:06:45', '1', '1', 'huiyui'),
-(9, '2021-12-12 03:16:03', '1', '1', 'huiyui'),
-(10, '2021-12-12 03:18:04', '1', '1', 'huiyui'),
-(11, '2021-12-12 03:18:42', '1', '1', 'huiyui'),
-(12, '2021-12-12 03:19:28', '1', '1', 'huiyui'),
-(13, '2021-12-12 03:20:17', '1', '1', 'huiyui'),
-(14, '2021-12-12 03:25:11', '1', '1', 'huiyui'),
-(15, '2021-12-12 03:26:36', '1', '1', 'huiyui'),
-(16, '2021-12-12 03:29:07', '1', '1', 'huiyui'),
-(17, '2021-12-12 03:30:26', '1', '1', 'huiyui'),
-(18, '2021-12-12 03:33:37', '1', '1', 'huiyui'),
-(19, '2021-12-12 03:35:07', '1', '1', 'huiyui'),
-(20, '2021-12-13 09:25:02', '1', '1', 'kibn');
+INSERT INTO `discussiontable` (`DiscussionID`, `EntryDate`, `SenderID`, `RecipientID`, `Message`, `type`) VALUES
+(2, '2021-12-12 03:00:07', '1', '1', '1', 'client'),
+(3, '2021-12-12 03:04:20', '1', '1', 'fdsfd', 'client'),
+(4, '2021-12-12 03:04:28', '1', '1', 'sdfsdfsd', 'client'),
+(5, '2021-12-12 03:04:38', '1', '1', '32432', 'provider'),
+(6, '2021-12-12 03:05:26', '1', '1', '32432', 'client'),
+(7, '2021-12-12 03:06:38', '1', '1', 'hkj', 'provider'),
+(8, '2021-12-12 03:06:45', '1', '1', 'huiyui', 'client'),
+(9, '2021-12-12 03:16:03', '1', '1', 'huiyui', 'provider'),
+(10, '2021-12-12 03:18:04', '1', '1', 'huiyui', 'client'),
+(11, '2021-12-12 03:18:42', '1', '1', 'huiyui', 'client'),
+(12, '2021-12-12 03:19:28', '1', '1', 'huiyui', 'client'),
+(13, '2021-12-12 03:20:17', '1', '1', 'huiyui', 'client'),
+(14, '2021-12-12 03:25:11', '1', '1', 'huiyui', 'client'),
+(15, '2021-12-12 03:26:36', '1', '1', 'huiyui', 'client'),
+(16, '2021-12-12 03:29:07', '1', '1', 'huiyui', 'client'),
+(17, '2021-12-12 03:30:26', '1', '1', 'huiyui', 'client'),
+(18, '2021-12-12 03:33:37', '1', '1', 'huiyui', 'client'),
+(19, '2021-12-12 03:35:07', '1', '1', 'huiyui', 'client'),
+(20, '2021-12-13 09:25:02', '1', '1', 'kibn', 'client'),
+(25, '2021-12-14 12:10:53', '1', '1', 'gdfgdf', 'client'),
+(26, '2021-12-14 12:11:29', '1', '1', 'gdfgdf', 'client'),
+(27, '2021-12-14 12:12:05', '1', '1', 'gdfgdf', 'client'),
+(28, '2021-12-14 12:38:07', '1', '1', 'gdfgdf', 'client'),
+(29, '2021-12-14 12:40:20', '1', '1', 'gdfgdf', 'client'),
+(30, '2021-12-14 12:41:04', '1', '1', 'gdfgdf', 'client'),
+(31, '2021-12-14 12:42:57', '1', '1', 'gdfgdf', 'client'),
+(32, '2021-12-14 12:43:30', '1', '1', 'gdfgdf', 'client'),
+(33, '2021-12-14 12:44:02', '1', '1', 'gdfgdf', 'client'),
+(34, '2021-12-14 12:45:13', '1', '1', 'gdfgdf', 'client'),
+(35, '2021-12-14 12:45:49', '1', '1', 'gdfgdf', 'client'),
+(36, '2021-12-14 12:47:00', '1', '1', 'gdfgdf', 'client'),
+(37, '2021-12-14 12:47:55', '1', '1', 'gdfgdf', 'client'),
+(38, '2021-12-14 01:09:14', '1', '1', 'gdfgdf', 'client'),
+(39, '2021-12-14 01:09:43', '1', '1', 'gdfgdf', 'client'),
+(40, '2021-12-14 01:10:52', '1', '1', 'gdfgdf', 'client'),
+(41, '2021-12-14 01:12:06', '1', '1', 'gdfgdf', 'client'),
+(42, '2021-12-14 01:12:53', '1', '1', 'gdfgdf', 'client'),
+(43, '2021-12-14 01:53:00', '1', '1', 'sdfsdf', 'client'),
+(44, '2021-12-14 01:53:14', '1', '1', 'dfsdf', 'client'),
+(45, '2021-12-14 01:53:30', '1', '1', 'kibriya', 'client'),
+(46, '2021-12-14 01:54:04', '1', '1', 'kibriya', 'client'),
+(47, '2021-12-14 01:56:09', '1', '1', 'kibriya', 'client'),
+(48, '2021-12-15 08:58:43', '1', '1', 'hello sir,\r\n', 'client'),
+(49, '2021-12-15 09:09:35', '1', '1', 'sdfsdf', 'provider'),
+(50, '2021-12-15 09:14:07', '1', '1', 'sdfsdf', 'provider'),
+(51, '2021-12-15 09:14:24', '1', '1', 'uweiuiruioquwuiweqrioqwruio', 'provider'),
+(52, '2021-12-15 10:07:39', '1', '1', 'fdgfd', 'client');
 
 -- --------------------------------------------------------
 
@@ -341,7 +376,7 @@ CREATE TABLE `providercontacttable` (
 --
 
 INSERT INTO `providercontacttable` (`ProviderContactID`, `EntryDate`, `ProviderNDISNumber`, `FirstName`, `MiddleName`, `LastName`, `UnitNumber`, `StreetNumber`, `StreetName`, `StreetType`, `Suburb`, `State`, `Postcode`, `Email1`, `Email2`, `MobilePhone`, `WorkPhone`, `PreferredContact`, `Password`, `SecurityQuestion`, `SecurityAnswer`, `CommencementDate`, `AggregateRating`, `NumberOfRatings`, `ProviderOrganisation`, `Active`, `DepartureDate`, `DepartureReason`, `LastUpdated`) VALUES
-(1, '2021-09-18 15:58:14', 'rqerwe', 'wqr', 'qwt', 'wqte', '1', '44', '454', '', '44', '53', '53', 'john3@john3.com', 'joh@jsl.com', '02342134', '023234', '0245235', 'password', '23423', '23523', '2021-09-18 15:58:14', 3242, 0, 0, '2892', '2021-09-18 15:58:14', '082038', '2021-09-18 15:58:14');
+(1, '2021-09-18 15:58:14', '3244', 'test', 'pro', 'vider', '1', '44', '454', '', '44', 'ACT', '53', 'john3@john3.com', 'joh@jsl.com', '02342134', '023234', '0245235', 'password', '23423', '23523', '2021-09-18 00:00:00', 3242, 0, 0, '2892', '2021-09-18 15:58:14', '082038', '2021-12-15 10:05:27');
 
 -- --------------------------------------------------------
 
@@ -364,7 +399,13 @@ CREATE TABLE `providerhistorytable` (
 
 INSERT INTO `providerhistorytable` (`ProviderHistoryID`, `EntryDate`, `ProviderContactID`, `NarrativeDate`, `Narrative`, `LastUpdated`) VALUES
 (1, '2021-09-18 19:15:12', '1', '2021-09-18 19:15:12', 'User logged in', '0000-00-00 00:00:00'),
-(2, '2021-09-18 19:15:25', '1', '2021-09-18 19:15:25', 'User logged out', '0000-00-00 00:00:00');
+(2, '2021-09-18 19:15:25', '1', '2021-09-18 19:15:25', 'User logged out', '0000-00-00 00:00:00'),
+(3, '2021-12-15 12:59:36', '1', '2021-12-15 12:59:36', 'User logged in', '0000-00-00 00:00:00'),
+(4, '2021-12-15 14:06:25', '1', '2021-12-15 14:06:25', 'User logged out', '0000-00-00 00:00:00'),
+(5, '2021-12-15 14:06:35', '1', '2021-12-15 14:06:35', 'User logged in', '0000-00-00 00:00:00'),
+(6, '2021-12-15 14:06:39', '1', '2021-12-15 14:06:39', 'User logged out', '0000-00-00 00:00:00'),
+(7, '2021-12-15 14:38:30', '1', '2021-12-15 14:38:30', 'User logged in', '0000-00-00 00:00:00'),
+(8, '2021-12-15 14:54:29', '1', '2021-12-15 14:54:29', 'User logged out', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -699,19 +740,19 @@ ALTER TABLE `agencyofficerhistorytable`
 -- AUTO_INCREMENT for table `clientcontacttable`
 --
 ALTER TABLE `clientcontacttable`
-  MODIFY `ClientContactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ClientContactID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `clienthistorytable`
 --
 ALTER TABLE `clienthistorytable`
-  MODIFY `ClientHistoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `ClientHistoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `discussiontable`
 --
 ALTER TABLE `discussiontable`
-  MODIFY `DiscussionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `DiscussionID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT for table `providercontacttable`
@@ -723,7 +764,7 @@ ALTER TABLE `providercontacttable`
 -- AUTO_INCREMENT for table `providerhistorytable`
 --
 ALTER TABLE `providerhistorytable`
-  MODIFY `ProviderHistoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ProviderHistoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `pwdreset`
