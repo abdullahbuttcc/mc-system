@@ -91,13 +91,13 @@ use Config\Database;
                                 <?php if($value['type'] == 'provider'){ 
                                     $sender = $auth->getRow('select FirstName from '.Database::DB_TABLES[1].' where '.Database::DB_ID_FIELDS[1].' = '.$value['SenderID']);
                                     ?>
-                                <td class="bg-light"><?php echo $value['Message'].'<br><br><span>'.$sender['FirstName'].'</span>';?></td>
+                                <td class="bg-light"><?php echo '<span><b>'.$sender['FirstName'].':</b></span> '.$value['Message'];?></td>
                                 <td></td>
                                 <?php }elseif($value['type']== 'client'){
                                     $sender = $auth->getRow('select FirstName from '.Database::DB_TABLES[0].' where '.Database::DB_ID_FIELDS[0].' = '.$value['SenderID']);
                                     ?>
                                 <td></td>
-                                <td class="bg-lt"><?php echo $value['Message'].'<br><br><span>'.$sender['FirstName'].'</span>';?></td>
+                                <td class="bg-lt"><?php echo '<span><b>'.$sender['FirstName'].':</b></span> '.$value['Message'];?></td>
                                 <?php }?>
                             </tr>
                         <?php }}else{ ?>
