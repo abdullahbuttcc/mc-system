@@ -94,7 +94,7 @@ class Database
      * 
      * @var string
      */
-    const DB_TABLE_AGENCY = 'AgencyOfficerTable';
+    const DB_TABLE_AGENCY = 'agencyofficertable';
     /**
      * Agency Officer ID Field Name
      * 
@@ -137,7 +137,7 @@ class Database
      * 
      * @var string
      */
-    const DB_TABLE_LOG_CLIENT = 'ClientHistoryTable';
+    const DB_TABLE_LOG_CLIENT = 'clienthistorytable';
     /**
      * Client History Table Fields
      * 
@@ -150,7 +150,7 @@ class Database
      * 
      * @var string
      */
-    const DB_TABLE_LOG_PROVIDER = 'ProviderHistoryTable';
+    const DB_TABLE_LOG_PROVIDER = 'providerhistorytable';
     /**
      * Provider History Table Fields
      * 
@@ -163,7 +163,7 @@ class Database
      * 
      * @var string
      */
-    const DB_TABLE_LOG_AGENCY = 'AgencyOfficerHistoryTable';
+    const DB_TABLE_LOG_AGENCY = 'agencyofficerhistorytable';
     /**
      * Agency History Table Fields
      * 
