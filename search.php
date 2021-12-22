@@ -39,9 +39,13 @@ require_once __DIR__ . '/controllers/SearchController.php';
                         <div class="mb-3">
                             <label for="ServiceLabel" class="form-label">Service</label>
                             <select class="form-select" aria-label="Default select example" name="ServiceDropBox">
-                                <option> Select Service</option>
-                                <option value="active" <?php if(isset($_REQUEST['ServiceDropBox']) && $_REQUEST['ServiceDropBox']=='active'){ echo 'selected';}?>>Active</option>
-                                <option value="any" <?php if(isset($_REQUEST['ServiceDropBox']) && $_REQUEST['ServiceDropBox']=='any'){ echo 'selected';}?>>Any</option>
+                                <option value="any">Any</option>
+                                <?php
+                                    foreach($getservices as $service){?>
+                                        <option value="<?php echo $service['Service']?>"><?php echo ucfirst($service['Service']);?></option>
+                                    <?php } ?>
+                                ?>
+                                
                             </select>
                         </div>
                         <div class="mb-3">

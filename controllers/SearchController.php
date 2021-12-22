@@ -10,6 +10,14 @@ if (!isset($_SESSION['userID'])) {
 $error = "";
 
 $auth = new Authentication;
+$getservices = $auth->fetch_all("select Service from ".Database::DB_TABLE_SERVICES_PROVIDED_TABLE."   where Active ='yes' group by Service");
+print_r($getservices);
 if (isset($_REQUEST['SearchButton']) && $_REQUEST['SearchButton'] == 'search') {
-    $getdat = $auth->fetch_all("select s.*,p.* from ".Database::DB_TABLE_SERVICES_PROVIDED_TABLE." as s inner join ".Database::DB_TABLE_PROVIDER_ORGANISATION_TABLE." as p on p.ProviderOrganisationID=s.ProviderID  where s.Active ='".$_REQUEST['ServiceDropBox']."' and s.Suburb ='".$_REQUEST['SuburbTextbox']."' group by s.Service");
+    $ser ='';
+    if($_REQUEST['ServiceDropBox']==='any'){
+        $ser = '';
+    }else{
+        $ser = "s.Service ='".$_REQUEST['ServiceDropBox']."' and";
+    }
+    $getdat = $auth->fetch_all("select s.*,p.* from ".Database::DB_TABLE_SERVICES_PROVIDED_TABLE." as s inner join ".Database::DB_TABLE_PROVIDER_ORGANISATION_TABLE." as p on p.ProviderOrganisationID=s.ProviderID  where ".$ser." s.Suburb ='".$_REQUEST['SuburbTextbox']."' group by s.Service");
 }
