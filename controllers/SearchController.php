@@ -11,7 +11,6 @@ $error = "";
 
 $auth = new Authentication;
 $getservices = $auth->fetch_all("select Service from ".Database::DB_TABLE_SERVICES_PROVIDED_TABLE."   where Active ='yes' group by Service");
-print_r($getservices);
 if (isset($_REQUEST['SearchButton']) && $_REQUEST['SearchButton'] == 'search') {
     $ser ='';
     if($_REQUEST['ServiceDropBox']==='any'){
