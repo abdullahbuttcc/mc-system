@@ -105,7 +105,7 @@ require_once __DIR__ . '/controllers/ClientController.php';
                                 <input type="text" class="form-control" id="SuburbTextBox" name="SuburbTextBox" placeholder="Suburb Text" value="<?php echo $getdat['Suburb'];?>">
                             </div>
                             <div class="col-3">
-                                <select name="StateDropBox" class="form-control">
+                                <select name="StateDropBox" class="form-control" id="StateDropBox">
                                     <option value="ACT" <?php if($getdat['State']=='ACT'){ echo 'selected';}?>>ACT</option>
                                     <option value="NSW" <?php if($getdat['State']=='NSW'){ echo 'selected';}?>>NSW</option>
                                     <option value="NT" <?php if($getdat['State']=='NT'){ echo 'selected';}?>>NT</option>
@@ -184,7 +184,7 @@ require_once __DIR__ . '/controllers/ClientController.php';
                                 <input type="text" class="form-control" id="NumberOfRatingsLabelValue" name="NumberOfRatingsLabelValue" placeholder="Number Of Ratings" value="<?php echo $getdat['NumberOfRatings'];?>">
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary pull-center" name="UpdateDetailsButton" value="update" onclick="return confirm('Are you sure you want to update your details?')">Update Details</button>
+                        <button type="submit" class="btn btn-primary pull-center" name="UpdateDetailsButton" value="update" id="UpdateDetailsButton">Update Details</button>
                     </form>
                 </main>
             </div>
@@ -194,4 +194,68 @@ require_once __DIR__ . '/controllers/ClientController.php';
 <?php
 require_once __DIR__ . "/include/templates/sit-js.php";
 ?>
+<script type="text/javascript">
+var NDISNumberValue = $('#NDISNumberValue').val();
+var FirstNameTextbox = $('#FirstNameTextbox').val();
+var MiddleNameTextbox = $('#MiddleNameTextbox').val();
+var LastNameTextbox = $('#LastNameTextbox').val();
+var UnitNumberTextBox = $('#UnitNumberTextBox').val();
+var StreetNumberTextBox = $('#StreetNumberTextBox').val();
+var StreetNameTextbox = $('#StreetNameTextbox').val();
+var StreetTypeTextBox = $('#StreetTypeTextBox').val();
+var SuburbTextBox = $('#SuburbTextBox').val();
+var StateDropBox = $('#StateDropBox').val();
+var PostcodeTextBox = $('#PostcodeTextBox').val();
+var Email1TextBox = $('#Email1TextBox').val();
+var Email2TextBox = $('#Email2TextBox').val();
+var MobilePhoneTextbox = $('#MobilePhoneTextbox').val();
+var HomePhoneTextBox = $('#HomePhoneTextBox').val();
+var PreferredContactTextBox = $('#PreferredContactTextBox').val();
+var SecurityQuestionTextBox = $('#SecurityQuestionTextBox').val();
+var CommencementDateValue = $('#CommencementDateValue').val();
+var AggregateRatingLabelValue = $('#AggregateRatingLabelValue').val();
+var NumberOfRatingsLabelValue = $('#NumberOfRatingsLabelValue').val();
+
+$('body').on('click', function(e) {
+    changes = false; 
+    var target, href;
+    target = $(e.target);
+    if (e.target.tagName === 'A' || target.parents('a').length > 0 ) {
+        if($('#NDISNumberValue').val() !== NDISNumberValue || $('#FirstNameTextbox').val() !== FirstNameTextbox || $('#MiddleNameTextbox').val() !== MiddleNameTextbox || $('#LastNameTextbox').val() !== LastNameTextbox || $('#UnitNumberTextBox').val() !== UnitNumberTextBox || $('#StreetNumberTextBox').val() !== StreetNumberTextBox || $('#StreetNameTextbox').val() !== StreetNameTextbox || $('#StreetTypeTextBox').val() !== StreetTypeTextBox || $('#SuburbTextBox').val() !== SuburbTextBox || $('#StateDropBox').val() !== StateDropBox || $('#PostcodeTextBox').val() !== PostcodeTextBox || $('#Email1TextBox').val() !== Email1TextBox || $('#Email2TextBox').val() !== Email2TextBox || $('#MobilePhoneTextbox').val() !== MobilePhoneTextbox || $('#HomePhoneTextBox').val() !== HomePhoneTextBox || $('#PreferredContactTextBox').val() !== PreferredContactTextBox || $('#SecurityQuestionTextBox').val() !== SecurityQuestionTextBox || $('#CommencementDateValue').val() !== CommencementDateValue || $('#AggregateRatingLabelValue').val() !== AggregateRatingLabelValue || $('#NumberOfRatingsLabelValue').val() !== NumberOfRatingsLabelValue ){
+            changes = true;
+        }else{
+            changes = false;
+        }
+        if(changes){
+            e.preventDefault();
+            if (window.confirm("There are some unsaved changes, do you wish to save them?")) {
+                $('#UpdateDetailsButton').click(); 
+                //$('form').submit();
+            }
+            else{
+                $('#NDISNumberValue').val(NDISNumberValue);
+                $('#FirstNameTextbox').val(FirstNameTextbox);
+                $('#MiddleNameTextbox').val(MiddleNameTextbox);
+                $('#LastNameTextbox').val(LastNameTextbox);
+                $('#UnitNumberTextBox').val(UnitNumberTextBox);
+                $('#StreetNumberTextBox').val(StreetNumberTextBox);
+                $('#StreetNameTextbox').val(StreetNameTextbox);
+                $('#StreetTypeTextBox').val(StreetTypeTextBox);
+                $('#SuburbTextBox').val(SuburbTextBox);
+                $('#StateDropBox').val(StateDropBox);
+                $('#PostcodeTextBox').val(PostcodeTextBox);
+                $('#Email1TextBox').val(Email1TextBox);
+                $('#Email2TextBox').val(Email2TextBox);
+                $('#MobilePhoneTextbox').val(MobilePhoneTextbox);
+                $('#HomePhoneTextBox').val(HomePhoneTextBox);
+                $('#PreferredContactTextBox').val(PreferredContactTextBox);
+                $('#SecurityQuestionTextBox').val(SecurityQuestionTextBox);
+                $('#CommencementDateValue').val(CommencementDateValue);
+                $('#AggregateRatingLabelValue').val(AggregateRatingLabelValue);
+                $('#NumberOfRatingsLabelValue').val(NumberOfRatingsLabelValue);
+            }
+        }
+    }
+});
+</script>
 </html>

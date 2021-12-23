@@ -45,7 +45,6 @@ require_once __DIR__ . '/controllers/SearchController.php';
                                         <option value="<?php echo $service['Service']?>"><?php echo ucfirst($service['Service']);?></option>
                                     <?php } ?>
                                 ?>
-                                
                             </select>
                         </div>
                         <div class="mb-3">
