@@ -28,6 +28,7 @@ require_once __DIR__ . '/controllers/ClientController.php';
         }
     ?>
         <div class="col-9">
+            <a class="btn btn-primary float-right ml-4" style="margin-top: 2.0rem!important;" href="./provider.php">Back</a>
             <div class="container pt-4">
                 <main class="form-signin flex">
                     <?php if(isset($error)){echo $error;}; ?>

@@ -50,8 +50,8 @@
             <div class="vertical-menu">
               <a href="./accountdetails.php" class="<?php if ($first_part=="accountdetails.php") {echo "active"; } else  {echo "noactive";}?>">Account Details</a>
               <a href="./currentplan.php" class="<?php if ($first_part=="currentplan.php") {echo "active"; } else  {echo "noactive";}?>">Current Plan</a>
-              <a href="./currentbookings.php" class="<?php if ($first_part=="currentbookings.php") {echo "active"; } else  {echo "noactive";}?>">List of Current Bookings</a>
-              <a href="./search.php" class="<?php if ($first_part=="search.php") {echo "active"; } else  {echo "noactive";}?>">Search & Book</a>
+              <a href="./currentbookings.php" class="<?php if ($first_part=="currentbookings.php") {echo "active"; } else  {echo "noactive";}?>">Current Bookings</a>
+              <a href="./search.php" class="<?php if ($first_part=="search.php") {echo "active"; } else  {echo "noactive";}?>">Search</a>
               <a href="./discussion.php" class="<?php if ($first_part=="discussion.php") {echo "active"; } else  {echo "noactive";}?>">Discussion</a>
             </div>
         </div>

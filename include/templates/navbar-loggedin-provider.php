@@ -49,7 +49,7 @@
         <div class="col-2 bg-light" style="padding-bottom: 100%;padding-right: 0%;">
             <div class="vertical-menu">
               <a href="./accountdetails.php" class="<?php if ($first_part=="accountdetails.php") {echo "active"; } else  {echo "noactive";}?>">Account Details</a>
-              <a href="./currentbookings.php" class="<?php if ($first_part=="currentbookings.php") {echo "active"; } else  {echo "noactive";}?>">List of Current Bookings</a>
+              <a href="./currentbookings.php" class="<?php if ($first_part=="currentbookings.php") {echo "active"; } else  {echo "noactive";}?>">Current Booking</a>
               <a href="./services.php" class="<?php if ($first_part=="services.php") {echo "active"; } else  {echo "noactive";}?>">Services</a>
               <a href="./discussion.php" class="<?php if ($first_part=="discussion.php") {echo "active"; } else  {echo "noactive";}?>">Discussion</a>
             </div>

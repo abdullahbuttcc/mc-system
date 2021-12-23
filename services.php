@@ -30,6 +30,7 @@ require_once __DIR__ . '/controllers/ServiceController.php';
 
     <!-- SIGN IN FORM -->
     <div class="col-9">
+        <a class="btn btn-primary float-right ml-4" style="margin-top: 2.0rem!important;" href="./provider.php">Back</a>
         <div class="container pt-4">
             <?php if(isset($error)){echo $error;}; ?>
             <main class="form-signin flex">

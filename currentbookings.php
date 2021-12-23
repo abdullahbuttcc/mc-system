@@ -9,7 +9,7 @@ require_once __DIR__ . '/controllers/CurrentBookingController.php';
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Current Booking</title>
+    <title>Current Bookings</title>
     <?php
         require_once __DIR__ . "/include/templates/site-header.php";
     ?>
@@ -30,29 +30,30 @@ require_once __DIR__ . '/controllers/CurrentBookingController.php';
 
     <!-- SIGN IN FORM -->
     <div class="col-9">
+        <a class="btn btn-primary float-right ml-4 " style="margin-top: 1.9rem!important;" href="./provider.php">Back</a>
         <div class="container pt-4">
             <?php if(isset($error)){echo $error;}; ?>
             <main class="form-signin flex">
-                <h1 class="text-center pb-4">Current Booking</h1>
+                <h1 class="text-center pb-4">Current Bookings</h1>
                 <table class="table table-bordered ">
                     <thead>
                         <tr>
                             <th scope="col">Provider</th>
                             <th scope="col">Service</th>
-                            <th scope="col">Last Update</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">Price</th>
+                            <th scope="col">Recurring</th>
                             <th scope="col">Frequency</th>
                         </tr>
                     </thead>
                     <tbody>
                     <?php foreach ($getdat as $value) { ?>
                         <tr>
-                            <td><?php echo $value['TradingName'];?></td>
+                            <td><?php echo ucfirst($value['FirstName'])." ".ucfirst($value['MiddleName'])." ".ucfirst($value['LastName']);?></td>
                             <td><?php echo $value['Service'];?></td>
-                            <td><?php echo date('d-m-Y',strtotime($value['LastUpdated']));?></td>
                             <td><?php echo date('d-m-Y',strtotime($value['DateStart']));?></td>
                             <td><?php echo $value['TransactionPrice'];?></td>
+                            <td><?php echo $value['Recurring'];?></td>
                             <td><?php if($value['Recurring']!=''){echo $value['Frequency'];}else{ echo $value['Recurring'];}?></td>
                         </tr>
                     <?php } ?>
