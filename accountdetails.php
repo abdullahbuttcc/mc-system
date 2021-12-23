@@ -195,6 +195,11 @@ require_once __DIR__ . '/controllers/ClientController.php';
 require_once __DIR__ . "/include/templates/sit-js.php";
 ?>
 <script type="text/javascript">
+<?php if ($_SESSION['userType'] === 0) {?>
+    var BirthDay = $('#BirthDay').val();
+    var BirthMonth = $('#BirthMonth').val();
+    var BirthYear = $('#BirthYear').val();
+<?php } ?>
 var NDISNumberValue = $('#NDISNumberValue').val();
 var FirstNameTextbox = $('#FirstNameTextbox').val();
 var MiddleNameTextbox = $('#MiddleNameTextbox').val();
@@ -221,7 +226,7 @@ $('body').on('click', function(e) {
     var target, href;
     target = $(e.target);
     if (e.target.tagName === 'A' || target.parents('a').length > 0 ) {
-        if($('#NDISNumberValue').val() !== NDISNumberValue || $('#FirstNameTextbox').val() !== FirstNameTextbox || $('#MiddleNameTextbox').val() !== MiddleNameTextbox || $('#LastNameTextbox').val() !== LastNameTextbox || $('#UnitNumberTextBox').val() !== UnitNumberTextBox || $('#StreetNumberTextBox').val() !== StreetNumberTextBox || $('#StreetNameTextbox').val() !== StreetNameTextbox || $('#StreetTypeTextBox').val() !== StreetTypeTextBox || $('#SuburbTextBox').val() !== SuburbTextBox || $('#StateDropBox').val() !== StateDropBox || $('#PostcodeTextBox').val() !== PostcodeTextBox || $('#Email1TextBox').val() !== Email1TextBox || $('#Email2TextBox').val() !== Email2TextBox || $('#MobilePhoneTextbox').val() !== MobilePhoneTextbox || $('#HomePhoneTextBox').val() !== HomePhoneTextBox || $('#PreferredContactTextBox').val() !== PreferredContactTextBox || $('#SecurityQuestionTextBox').val() !== SecurityQuestionTextBox || $('#CommencementDateValue').val() !== CommencementDateValue || $('#AggregateRatingLabelValue').val() !== AggregateRatingLabelValue || $('#NumberOfRatingsLabelValue').val() !== NumberOfRatingsLabelValue ){
+        if($('#NDISNumberValue').val() !== NDISNumberValue || $('#FirstNameTextbox').val() !== FirstNameTextbox || $('#MiddleNameTextbox').val() !== MiddleNameTextbox || $('#LastNameTextbox').val() !== LastNameTextbox || $('#UnitNumberTextBox').val() !== UnitNumberTextBox || $('#StreetNumberTextBox').val() !== StreetNumberTextBox || $('#StreetNameTextbox').val() !== StreetNameTextbox || $('#StreetTypeTextBox').val() !== StreetTypeTextBox || $('#SuburbTextBox').val() !== SuburbTextBox || $('#StateDropBox').val() !== StateDropBox || $('#PostcodeTextBox').val() !== PostcodeTextBox || $('#Email1TextBox').val() !== Email1TextBox || $('#Email2TextBox').val() !== Email2TextBox || $('#MobilePhoneTextbox').val() !== MobilePhoneTextbox || $('#HomePhoneTextBox').val() !== HomePhoneTextBox || $('#PreferredContactTextBox').val() !== PreferredContactTextBox || $('#SecurityQuestionTextBox').val() !== SecurityQuestionTextBox || $('#CommencementDateValue').val() !== CommencementDateValue || $('#AggregateRatingLabelValue').val() !== AggregateRatingLabelValue || $('#NumberOfRatingsLabelValue').val() !== NumberOfRatingsLabelValue <?php if ($_SESSION['userType'] === 0) {?> || BirthDay !== $('#BirthDay').val() || BirthMonth !== $('#BirthMonth').val() || BirthYear !== $('#BirthYear').val() <?php } ?> ){
             changes = true;
         }else{
             changes = false;
@@ -253,6 +258,11 @@ $('body').on('click', function(e) {
                 $('#CommencementDateValue').val(CommencementDateValue);
                 $('#AggregateRatingLabelValue').val(AggregateRatingLabelValue);
                 $('#NumberOfRatingsLabelValue').val(NumberOfRatingsLabelValue);
+                <?php if ($_SESSION['userType'] === 0) {?>
+                $('#BirthDay').val(BirthDay);
+                $('#BirthMonth').val(BirthMonth);
+                $('#BirthYear').val(BirthYear);
+                <?php } ?>
             }
         }
     }
