@@ -30,7 +30,7 @@ require_once __DIR__ . '/controllers/CurrentBookingController.php';
 
     <!-- SIGN IN FORM -->
     <div class="col-9">
-        <a class="btn btn-primary float-right ml-4 " style="margin-top: 1.9rem!important;" href="./provider.php">Back</a>
+        <a class="btn btn-primary float-right ml-4 " style="margin-top: 2.0rem!important;" href="./provider.php">Back</a>
         <div class="container pt-4">
             <?php if(isset($error)){echo $error;}; ?>
             <main class="form-signin flex">
@@ -38,7 +38,12 @@ require_once __DIR__ . '/controllers/CurrentBookingController.php';
                 <table class="table table-bordered ">
                     <thead>
                         <tr>
+                            <?php if ($_SESSION['userType'] === 0) {?>
+                            <th scope="col">Client</th>
+                            <?php } ?>
+                            <?php if ($_SESSION['userType'] === 1) {?>
                             <th scope="col">Provider</th>
+                            <?php } ?>
                             <th scope="col">Service</th>
                             <th scope="col">Start Date</th>
                             <th scope="col">Price</th>
